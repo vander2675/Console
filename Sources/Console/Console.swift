@@ -52,8 +52,8 @@ public struct Console {
     }
 
     @discardableResult
-    public func print(_ string: String) -> Self {
-        Swift.print(createIndentString() + string)
+    public func print(_ string: String, seperator: String = " ", terminator: String = "\n") -> Self {
+        Swift.print(createIndentString() + string, separator: seperator, terminator: terminator)
         return self
     }
 }

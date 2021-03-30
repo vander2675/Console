@@ -24,10 +24,14 @@ final class ConsoleTests: XCTestCase {
 
     func testColoredOutput() {
         Console()
-            .print("")
             .colored(with: .red) {
                 $0
                     .print("This should be red")
+                    .print("Another red Line")
+            }
+            .colored(with: .green) {
+                $0
+                    .print("And this one is green")
             }
     }
 

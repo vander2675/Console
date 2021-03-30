@@ -36,9 +36,7 @@ public struct Console {
 
     @discardableResult
     public func colored(with color: Color, _ block: (Console) -> Void) -> Self {
-        Swift.print(createColorPrefix(for: color), terminator: "")
         block(self.copy(color: color))
-        Swift.print(createColorPrefix(for: self.color))
         return self
     }
 
@@ -53,7 +51,7 @@ public struct Console {
 
     @discardableResult
     public func print(_ string: String, seperator: String = " ", terminator: String = "\n") -> Self {
-        Swift.print(createIndentString() + string, separator: seperator, terminator: terminator)
+        Swift.print(createColorPrefix(for: self.color) + createIndentString() + string + createColorPrefix(for: .default), separator: seperator, terminator: terminator)
         return self
     }
 }

@@ -19,6 +19,7 @@ final class ConsoleTests: XCTestCase {
                     .print("Level 1 again")
             }
             .print("Base Level again")
+            .run(with: print)
 
     }
 
@@ -33,6 +34,7 @@ final class ConsoleTests: XCTestCase {
                 $0
                     .print("And this one is green")
             }
+            .run(with: print)
     }
 
     static var allTests = [

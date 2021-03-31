@@ -52,22 +52,22 @@ public struct Console {
             }
     }
 
-    func indented() -> Console {
+    public func indented() -> Console {
         self.copy(currentIndent: self.currentIndent + baseIndent)
     }
 
-    func colored(with color: Color) -> Console {
+    public func colored(with color: Color) -> Console {
         self.copy(color: color)
     }
 }
 
 extension Console {
 
-    static func indented(_ console: Console) -> Console {
+    public static func indented(_ console: Console) -> Console {
         console.indented()
     }
 
-    static func colored(_ console: Console, with color: Color) -> Console {
+    public static func colored(_ console: Console, with color: Color) -> Console {
         console.colored(with: color)
     }
 

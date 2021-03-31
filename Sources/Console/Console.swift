@@ -105,7 +105,7 @@ extension Console {
 }
 
 extension Console {
-    func mergingMessages(from other: Console) -> Console {
+    public func mergingMessages(from other: Console) -> Console {
         self.copy(messages: self.messages + other.messages)
     }
 }

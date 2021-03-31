@@ -47,8 +47,11 @@ public struct Console {
 
     public func run(with printFunction: (String, String, String) -> Void) {
         self.messages
-            .forEach { message in
-                printFunction(message.message(), message.seperator, message.terminator)
+            .reduce(into: [(String, String, String)]()) { array, message in
+                array.append((message.message(isNewLine: (array.last?.2 ?? "\n") == "\n"), message.seperator, message.terminator))
+            }
+            .forEach { (message, seperator, terminator) in
+                printFunction(message, seperator, terminator)
             }
     }
 
@@ -82,6 +85,10 @@ extension Console {
         let seperator: String
         let terminator: String
 
+        var endsLine: Bool {
+            terminator == "\n"
+        }
+
         private func createIndentString(for indent: Int) -> String {
             Array(repeating: " ", count: indent)
                 .reduce("", +)
@@ -91,8 +98,8 @@ extension Console {
             "\u{001B}\(color.rawValue)"
         }
 
-        func message() -> String {
-            createColorPrefix(for: self.color) + self.createIndentString(for: self.indent) + self.text + self.createColorPrefix(for: .default)
+        func message(isNewLine: Bool) -> String {
+            createColorPrefix(for: self.color) + (isNewLine ? self.createIndentString(for: self.indent) : "") + self.text + self.createColorPrefix(for: .default)
         }
     }
 }

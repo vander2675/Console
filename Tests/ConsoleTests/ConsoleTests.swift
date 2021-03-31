@@ -37,8 +37,24 @@ final class ConsoleTests: XCTestCase {
             .run(with: print)
     }
 
+    func testNotEndingLine() {
+
+        Console()
+            .indent {
+                $0
+                    .print("There should be no newline or indent ", terminator: "")
+                    .print("here")
+                    .print("But this should be on a new Line")
+            }
+
+            .run(with: print)
+
+
+    }
+
     static var allTests = [
         ("testOutput", testOutput),
-        ("testColoredOutput", testColoredOutput)
+        ("testColoredOutput", testColoredOutput),
+        ("testNotEndingLine", testNotEndingLine)
     ]
 }

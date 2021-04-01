@@ -71,7 +71,7 @@ public struct Console {
 // MARK: - Mutating
 extension Console {
 
-    mutating func print(_ string: String, seperator: String = " ", terminator: String = "\n") {
+    public mutating func print(_ string: String, seperator: String = " ", terminator: String = "\n") {
         self.messages.append(Message(color: self.color, indent: self.currentIndent, text: string, seperator: seperator, terminator: terminator))
     }
 

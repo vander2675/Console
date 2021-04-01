@@ -8,11 +8,11 @@
 import Foundation
 
 public struct Console {
-    let baseIndent: Int
+    var baseIndent: Int
     private let currentIndent: Int
-    let color: Color
+    var color: Color
 
-    private let messages: [Message]
+    private var messages: [Message]
 
     public init(baseIndent: Int = 2, color: Color = .default) {
         self.baseIndent = baseIndent
@@ -66,6 +66,15 @@ public struct Console {
     public func empty() -> Console {
         self.copy(messages: [])
     }
+}
+
+// MARK: - Mutating
+extension Console {
+
+    mutating func print(_ string: String, seperator: String = " ", terminator: String = "\n") {
+        self.messages.append(Message(color: self.color, indent: self.currentIndent, text: string, seperator: seperator, terminator: terminator))
+    }
+
 }
 
 extension Console {

@@ -62,6 +62,10 @@ public struct Console {
     public func colored(with color: Color) -> Console {
         self.copy(color: color)
     }
+
+    public func empty() -> Console {
+        self.copy(messages: [])
+    }
 }
 
 extension Console {
